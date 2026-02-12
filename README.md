@@ -21,7 +21,7 @@ Sifra is a decentralized publishing protocol designed for the post-AI era. It is
 ## How It Works (The MVP)
 
 1.  **Granular & Progressive Unlocking:** It is not just a binary paywall; the creator controls the "Value Chain."
-    * **Flexible Models:** A creator can charge a flat fee for the full article OR set up a "Pay-to-Proceed" model (e.g., Paragraph 1 is free, Pay 1 KAS to unlock each Paragraphs 2...9 until you unlock the Conclusion).
+    * **Flexible Models:** A creator can charge a flat fee for the full article OR set up a "Pay-to-Proceed" model (e.g., Paragraph 1 is free, Pay 1 KAS to unlock each Paragraphs 2...n until you unlock the Conclusion).
     * **Incentivized Quality:** Readers don't pay for "boring middles." If the content loses value, the revenue stream stops instantly. The writer must earn every paragraph.
     * **Instant Speed:** The decryption key is delivered instantly—faster than a webpage can load an ad. You don’t pay for the whole book; you pay for the chapter. You don’t pay for the whole video; you pay to see the ending.
 
