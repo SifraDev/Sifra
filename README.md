@@ -45,6 +45,20 @@ Sifra is starting as a haven for writers, but the architecture is agnostic.
 
 ---
 
+## Installation & Setup (Local Demo Mode)
+To run Sifra locally and test the "Pay-Per-Insight" flow without spending real KAS:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/SifraDev/Sifra.git https://github.com/SifraDev/Sifra.git
+   npm install
+   npm run dev
+
+**Note for the Judges:**
+The current deployment is running in "Demo Mode". It simulates the Kaspa wallet connection and blockDAG confirmation latency (~1 second) to demonstrate the intended UX without requiring judges to hold testnet KAS. The logic for the protocol architecture is fully implemented in the codebase.
+
+---
+
 ## Development & Transparency
 
 **AI Usage Declaration:**
