@@ -21,13 +21,13 @@ Sifra is a decentralized publishing protocol designed for the post-AI era. It is
 ## How It Works (The MVP)
 
 1.  **Granular & Progressive Unlocking:** It is not just a binary paywall; the creator controls the "Value Chain."
-    * **Flexible Models:** A creator can charge a flat fee for the full article OR set up a "Pay-to-Proceed" model (e.g., Paragraph 1 is free, Pay 1 KAS to unlock Paragraphs 2-4, Pay another 5 KAS to unlock the Conclusion).
+    * **Flexible Models:** A creator can charge a flat fee for the full article OR set up a "Pay-to-Proceed" model (e.g., Paragraph 1 is free, Pay 1 KAS to unlock Paragraphs 2-4, Pay another 5 KAS for each paragraph until you unlock the Conclusion).
     * **Incentivized Quality:** Readers don't pay for "boring middles." If the content loses value, the revenue stream stops instantly. The writer must earn every paragraph.
     * **Instant Speed:** The decryption key is delivered instantly—faster than a webpage can load an ad. You don’t pay for the whole book; you pay for the chapter. You don’t pay for the whole video; you pay to see the ending.
 
 2.  **Monetizing the AI:** We don't block AI; we treat it as a customer.
     * **The AI Toll:** If an LLM wants to scrape Sifra to train its model or summarize a post, it must pay for the protocol.
-    * **No Free Context:** An LLM cannot summarize the conclusion without paying the transaction fees for the introduction and the body. To scrape the full context, the AI must execute every micro-transaction in the chain. We turn data scraping into a revenue stream for the human creator.
+    * **No Free Context:** An LLM cannot summarize the conclusion without paying the transaction fees for the introduction and the body (or each paragraph). To scrape the full context, the AI must execute every micro-transaction in the chain. We turn data scraping into a revenue stream for the human creator.
 
 3.  **Direct P2P Flow:** 100% of the payment goes to the creator’s wallet. No middleman taking a 30% cut.
 
