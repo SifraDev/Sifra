@@ -1,0 +1,248 @@
+// --- MOCK DATA ---
+const users = {
+    'kaspa:qxyz...author1': {
+        name: 'Satoshi_N',
+        bio: 'Decentralized thought leader.',
+        earnings: 1450,
+        contentCount: 12
+    },
+    'kaspa:qz7...demo1': { // This will be YOU
+        name: 'Demo_User',
+        bio: 'Just browsing the ledger.',
+        earnings: 0,
+        contentCount: 0
+    }
+};
+
+const posts = [
+    {
+        id: 1,
+        authorId: 'kaspa:qxyz...author1',
+        title: 'The AI Harvest: Why We Are Losing',
+        teaser: 'We are in the middle of an AI arms race. Everyone is building the next LLM to summarize the internet. But in this gold rush, we forgot the most important asset: The Human Source. The Ad-Model is Dead: AI summarizes content, so users dont click links.',
+        fullContent: 'Creators lose revenue, and platforms lose relevance. <br><br>Censorship & Bias: Centralized gatekeepers decide what can be published and who gets demonetized. The AI Harvest: Bots scrape human intelligence for free. <br><br><strong>The Solution: Sifra</strong>. Derived from the Aramaic for "Book" and the root of "Cipher". Sifra is a decentralized publishing protocol designed for the post-AI era.',
+        price: 5,
+        unlocks: 124,
+        likes: 45
+    },
+    {
+        id: 2,
+        authorId: 'kaspa:qxyz...author1',
+        title: 'Moving to Kaspa: Speed Test Results',
+        teaser: 'I moved my entire infrastructure to Kaspa last week. The results were shocking. While Ethereum took 12 seconds to finalize, Kaspa was effectively instant.',
+        fullContent: 'Here is the technical breakdown... [Graph Data Hidden]. The BlockDAG structure allows us to scale without sacrificing decentralization. This is why Sifra chose Kaspa.',
+        price: 2,
+        unlocks: 89,
+        likes: 21
+    }
+];
+
+// --- APP STATE ---
+const app = {
+    currentUser: null,
+    unlockedPosts: [], // IDs of posts user has paid for
+    
+    // Initialize
+    init: () => {
+        app.preventCopy();
+        app.renderFeed();
+    },
+
+    // 1. Wallet Logic
+    toggleWalletModal: () => {
+        document.getElementById('wallet-modal').classList.toggle('hidden');
+    },
+
+    login: (address) => {
+        app.currentUser = address;
+        document.getElementById('wallet-modal').classList.add('hidden');
+        document.getElementById('wallet-btn').classList.add('hidden');
+        document.getElementById('user-display').classList.remove('hidden');
+        
+        // Update balance display
+        document.getElementById('user-balance').innerText = "4,500 KAS";
+        
+        // TRIGGER WATERMARK (Security Requirement)
+        app.enableWatermark(address);
+        
+        alert(`Wallet Connected: ${address.substring(0,10)}...`);
+    },
+
+    // 2. Navigation / Views
+    goHome: () => {
+        app.renderFeed();
+    },
+
+    goToMyProfile: () => {
+        if(app.currentUser) app.renderProfile(app.currentUser);
+    },
+
+    // 3. Render Feed
+    renderFeed: () => {
+        const container = document.getElementById('app');
+        container.innerHTML = `<h1>Latest Insights</h1><br>`;
+        
+        posts.forEach(post => {
+            const author = users[post.authorId];
+            const div = document.createElement('div');
+            div.className = 'post-card';
+            div.innerHTML = `
+                <div class="post-header">
+                    <div class="author-info" onclick="app.renderProfile('${post.authorId}')">
+                        <div class="avatar"></div>
+                        <div>
+                            <div class="author-name">${author.name}</div>
+                            <div class="time">2 hours ago</div>
+                        </div>
+                    </div>
+                </div>
+                <h2 onclick="app.renderPost(${post.id})">${post.title}</h2>
+                <p class="teaser">${post.teaser}</p>
+                <div class="post-stats">
+                    <span class="stat-item"><span class="star-icon">★</span> ${post.likes}</span>
+                    <span class="stat-item">🔓 ${post.unlocks} Paid Reads</span>
+                    <span class="stat-item" style="color:var(--kaspa-cyan); margin-left:auto;">Cost: ${post.price} KAS</span>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    },
+
+    // 4. Render Profile
+    renderProfile: (userId) => {
+        const user = users[userId] || { name: 'Unknown', bio: 'N/A', earnings: 0, contentCount: 0 };
+        const container = document.getElementById('app');
+        
+        container.innerHTML = `
+            <div class="profile-header">
+                <div class="profile-avatar"></div>
+                <h1>${user.name}</h1>
+                <p style="color:#888">${user.bio}</p>
+                <div class="profile-stats">
+                    <div class="p-stat"><b>${user.earnings} KAS</b>Earned</div>
+                    <div class="p-stat"><b>${user.contentCount}</b>Posts</div>
+                </div>
+                <div style="margin-top:20px; font-family:monospace; font-size:0.8rem; background:#222; padding:10px; display:inline-block; border-radius:4px;">
+                    ${userId}
+                </div>
+            </div>
+            <h3>Published Works</h3>
+            <div id="user-posts-list"></div>
+        `;
+
+        // Filter posts by this author
+        const userPosts = posts.filter(p => p.authorId === userId);
+        const list = document.getElementById('user-posts-list');
+        userPosts.forEach(post => {
+            list.innerHTML += `<div class="post-card" onclick="app.renderPost(${post.id})"><h3>${post.title}</h3></div>`;
+        });
+    },
+
+    // 5. Render Post (The Core Logic)
+    renderPost: (id) => {
+        const post = posts.find(p => p.id === id);
+        const author = users[post.authorId];
+        const isUnlocked = app.unlockedPosts.includes(id);
+
+        const container = document.getElementById('app');
+        
+        let contentHtml = '';
+        
+        if (isUnlocked) {
+            // FULL ACCESS
+            contentHtml = `
+                <p class="content-body free-segment">${post.teaser}</p>
+                <p class="content-body">${post.fullContent}</p>
+                <div style="margin-top:30px; padding:20px; background:#111; border:1px solid var(--kaspa-cyan); color:var(--kaspa-cyan);">
+                    ✓ Authenticated via Blockchain. Watermarked to ${app.currentUser.substring(0,10)}...
+                </div>
+            `;
+        } else {
+            // LOCKED ACCESS
+            contentHtml = `
+                <p class="content-body free-segment">${post.teaser}</p>
+                <div class="locked-segment">
+                    <p class="content-body">${post.fullContent}</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="paywall-overlay">
+                    <div class="pay-box">
+                        <h3>Unlock full insight</h3>
+                        <span class="kas-price">${post.price} KAS</span>
+                        <p style="margin-bottom:15px; font-size:0.9rem; color:#888;">Instant decryption via Kaspa</p>
+                        <button class="btn-primary" onclick="app.payForPost(${id}, ${post.price})">PAY TO DECRYPT</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        container.innerHTML = `
+            <div class="article-view">
+                <button onclick="app.renderFeed()" style="background:none; border:none; color:#888; cursor:pointer; margin-bottom:20px;">← Back to Feed</button>
+                <h1>${post.title}</h1>
+                <div class="article-meta">
+                    By <strong onclick="app.renderProfile('${post.authorId}')" style="cursor:pointer">${author.name}</strong>
+                </div>
+                ${contentHtml}
+            </div>
+        `;
+    },
+
+    // 6. Payment Logic
+    payForPost: (id, amount) => {
+        if(!app.currentUser) {
+            alert("Please connect your wallet first.");
+            app.toggleWalletModal();
+            return;
+        }
+
+        const confirmPay = confirm(`Approve Transaction?\nSend ${amount} KAS to Sifra Protocol?`);
+        if(confirmPay) {
+            // Simulate Network Delay (Kaspa is fast, so 1 second)
+            const btn = document.querySelector('.pay-box button');
+            btn.innerText = "Processing (BlockDAG)...";
+            
+            setTimeout(() => {
+                app.unlockedPosts.push(id);
+                // Find post and update "progress" (unlocks)
+                const post = posts.find(p => p.id === id);
+                post.unlocks++;
+                // Add revenue to author (mock)
+                if(users[post.authorId]) users[post.authorId].earnings += amount;
+                
+                app.renderPost(id); // Re-render unlocked
+            }, 1000);
+        }
+    },
+
+    // 7. Security: Watermark & Anti-Copy
+    enableWatermark: (text) => {
+        const container = document.getElementById('watermark-container');
+        container.innerHTML = ''; // clear old
+        
+        // Create repeating pattern
+        const count = 50; // enough to cover screen
+        for (let i = 0; i < count; i++) {
+            const div = document.createElement('div');
+            div.className = 'watermark-text';
+            div.innerText = text;
+            container.appendChild(div);
+        }
+    },
+
+    preventCopy: () => {
+        // Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        // Disable Keyboard shortcuts for copy (Ctrl+C, Cmd+C)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 's' || e.key === 'p')) {
+                e.preventDefault();
+                alert('Sifra Protocol: Content is encrypted and protected.');
+            }
+        });
+    }
+};
+
+// Start
+app.init();
