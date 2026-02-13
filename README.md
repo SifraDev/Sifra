@@ -45,28 +45,42 @@ Sifra is starting as a haven for writers, but the architecture is agnostic.
 
 ---
 
-## Installation & Setup (Local Demo Mode)
-To run Sifra locally and test the "Pay-Per-Insight" flow without spending real KAS:
+## Installation & Setup (Real Wallet Integration)
+To run the latest version of Sifra with live Kasware Wallet integration:
 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/SifraDev/Sifra.git
-2. **Install Dependencies:**
+   ```
+2. **Navigate to the latest build:**
+   IMPORTANT: The latest code with real wallet integration is located in the Sifra+Wallet folder.
+   ```bash
+   cd "Sifra+Wallet"
+   ```
+3. **Install Dependencies:**
    ```bash
    npm install
-3. **Run the Development Server:**
+   ```
+4. **Run the Development Server:**
    ```bash
-   npm run dev   
+   npm run dev
+   ```
 
-**Note for the Judges:**
-The current deployment is running in "Demo Mode". It simulates the Kaspa wallet connection and blockDAG confirmation latency (~1 second) to demonstrate the intended UX without requiring judges to hold testnet KAS. The logic for the protocol architecture is fully implemented in the codebase.
+---
+
+### Note for the Judges
+This project features a **live integration** with the Kaspa Testnet using the Kasware Wallet.
+
+* **Requirement:** Please ensure you have the Kasware Wallet extension installed.
+* **Network:** Set your wallet network to **Testnet 10**.
+* **Funds:** You will need testnet KAS (available via faucet) to interact with the protocol and unlock content.
 
 ---
 
 ## Development & Transparency
 
 **AI Usage Declaration:**
-This project was built using an AI-first approach to maximize development speed during the kaspathon. I used Replit and LLMs to generate the frontend structure (React/Vite) and the boilerplate code. My role was acting as the Software Architect: defining the Sifra protocol logic, designing the 'Pay-Per-Insight' flow, and integrating the Kaspa wallet concepts. The AI wrote the syntax; I designed the system.
+This project was built using an AI-first approach to maximize development speed during the kaspathon. I used Replit and Gemini to generate the frontend structure (React/Vite) and the boilerplate code. My role was acting as the Software Architect: defining the Sifra protocol logic, designing the 'Pay-Per-Insight' flow, and integrating the Kaspa wallet concepts. The AI wrote the syntax; I designed the system.
 
 **Note on Commit History:**
 This project was developed using Replit's online IDE. The codebase was exported and pushed to GitHub as a single initial commit for submission purposes.
