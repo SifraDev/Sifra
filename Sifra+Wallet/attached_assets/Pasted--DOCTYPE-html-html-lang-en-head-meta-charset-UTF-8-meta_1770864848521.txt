@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifra | The Encrypted Ledger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="watermark-container" class="watermark-layer"></div>
+
+    <nav>
+        <div class="logo" onclick="app.goHome()">Sifra<span class="dot">.</span></div>
+        <div class="nav-links">
+            <button id="wallet-btn" class="btn-primary" onclick="app.toggleWalletModal()">Connect Kaspium</button>
+            <div id="user-display" class="hidden" onclick="app.goToMyProfile()">
+                <span id="user-balance">0 KAS</span>
+                <div class="avatar-small"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app">
+        </main>
+
+    <div id="wallet-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Connect Wallet</h3>
+                <button onclick="app.toggleWalletModal()" class="close-btn">&times;</button>
+            </div>
+            <div class="wallet-simulator">
+                <p>Simulating Kaspium Connection...</p>
+                <div class="qr-placeholder">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KaspaConnect" alt="QR">
+                </div>
+                <div class="wallet-actions">
+                    <button class="btn-wallet" onclick="app.login('kaspa:qz7...demo1')">
+                        <span class="icon">⚡</span> Connect Mock Wallet A
+                    </button>
+                    <button class="btn-wallet" onclick="app.login('kaspa:qq9...judge')">
+                        <span class="icon">🛡️</span> Connect Mock Wallet B
+                    </button>
+                </div>
+                <p class="tiny-text">Sifra uses KRC-20 signatures for Sovereign Identity.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

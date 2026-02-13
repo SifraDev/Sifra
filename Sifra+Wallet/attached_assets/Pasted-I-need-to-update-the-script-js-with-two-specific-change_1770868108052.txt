@@ -1,0 +1,13 @@
+I need to update the `script.js` with two specific changes based on the project philosophy.
+
+1. UPDATE THE DATA:
+Please add a new article to the `posts` array (id: 3). This article is critical for the demo as it explains the platform's purpose.
+- Title: "The Dead Internet Theory: Why You Are Reading Bots"
+- Author: 'kaspa:qz7...demo1' (Make sure this matches the current user so I can see the author controls)
+- Price: 10 KAS
+- Likes: 842
+- Unlocks: 315
+- Teaser: "Look around you. The comments section on X? Bots. The reviews on Amazon? Generated. The 'viral' video you just watched? Algorithmically boosted. We have reached a tipping point where 50% of web traffic is non-human. The internet was built to connect humans, but it has been hijacked by engagement algorithms designed to harvest your attention span for ad revenue. You are no longer the user; you are the training data."
+- Full Content: "The danger isn't just spam; it's the shaping of reality. When an LLM summarizes news, it strips away nuance and bias-checks against a centralized safety filter. This means a handful of engineers in Silicon Valley now decide the 'acceptable window of thought' for the entire planet. If your idea falls outside their safety parameters, you don't just get downvoted—you become invisible.<br><br>This is why the ad-model must die. As long as content is 'free,' it must be safe enough for Coca-Cola to advertise next to it. This creates a sterilization of thought. To speak the truth—the raw, unpolished, controversial truth—we must remove the advertiser from the equation. We must return to a direct value exchange: I write, you read, you pay. No middlemen, no censors.<br><br>Sifra is the exit door. By using Kaspa’s high-speed blockDAG, we can encrypt this paragraph you are reading right now. It lives on a ledger that no government can scrub and no moderator can delete. By paying 1 KAS to unlock this, you didn't just buy an article. You voted for a future where human thought is valued, not harvested. Welcome to the resistance."
+
+2
