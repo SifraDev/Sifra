@@ -89,4 +89,4 @@ This project was developed using Replit's online IDE. The codebase was exported 
 # Sifra - Decentralized Content Platform
 https://youtu.be/pBYELXMJyH8
 
-Click the image above to watch the demo (2:43).
+Click the link above to watch the demo (2:43).
