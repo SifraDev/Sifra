@@ -38,8 +38,9 @@ Sifra is a decentralized publishing protocol designed for the post-AI era. It is
 ## The Vision (Roadmap)
 Sifra is starting as a haven for writers, but the architecture is agnostic.
 
-* **Phase 2 (Media):** We will expand to video and audio, utilizing the same "Pay-Per-Second" encryption model.
-* **Phase 3 (KRC-20 Equity):** We will move from monetizing content to monetizing reputation. Using the KRC-20 standard, creators will launch "Creator Coins." This allows early fans to invest in a creator’s growth. Fans won't just "donate"; they will invest.—Imagine buying "stock" in the next investigative journalist or the next Mr. Beast before they blow up. Fans won't just consume content; they will hold a stake in the creator's success.
+* **Phase 2 (Mobile Integration):** We will implement deep-linking standards (WalletConnect) to support mobile wallets like Kaspium. This brings Sifra to iOS and Android, allowing users to decrypt and read content natively on the go.
+* **Phase 3 (Media):** We will expand to video and audio, utilizing the same "Pay-Per-Second" encryption model.
+* **Phase 4 (KRC-20 Equity):** We will move from monetizing content to monetizing reputation. Using the KRC-20 standard, creators will launch "Creator Coins." This allows early fans to invest in a creator’s growth. Fans won't just "donate"; they will invest.—Imagine buying "stock" in the next investigative journalist or the next Mr. Beast before they blow up. Fans won't just consume content; they will hold a stake in the creator's success.
 
 > *Sifra is not just a platform; it is a defense mechanism for intellectual property in the age of Artificial Intelligence. Decrypt the truth. Pay the creator. Own the network.*
 
