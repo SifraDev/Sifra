@@ -85,3 +85,8 @@ This project was built using an AI-first approach to maximize development speed 
 
 **Note on Commit History:**
 This project was developed using Replit's online IDE. The codebase was exported and pushed to GitHub as a single initial commit for submission purposes.
+
+# Sifra - Decentralized Content Platform
+[![Watch the video](https://youtu.be/pBYELXMJyH8)
+
+Click the image above to watch the demo (2:43).
